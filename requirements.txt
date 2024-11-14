@@ -5,3 +5,4 @@ pygetwindow
 opencv-python
 numpy
 pdf2image
+pyngrok
