@@ -1,1 +1,7 @@
 streamlit
+flet
+Pillow
+pygetwindow
+opencv-python
+numpy
+pdf2image
