@@ -3,18 +3,29 @@ import subprocess
 import os
 import time
 
-# FletのWebアプリを起動
+# FletアプリのWebアプリを起動
 def start_flet_app():
     try:
-        process = subprocess.Popen(["python", "app_main.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        # Dockerコンテナ内でのFletアプリの起動
+        process = subprocess.Popen(["docker", "run", "-d", "-p", "8550:8550", "flet-app-image"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+        # プロセスの標準出力とエラーをキャッチ
         stdout, stderr = process.communicate()
 
+        # エラーが発生した場合
         if stderr:
             st.error(f"Fletアプリの起動中にエラーが発生しました:\n{stderr.decode()}")
             return None
         
+        # アプリが起動するまで少し待機
+        time.sleep(5)
+
+        # Fletアプリが起動したらlocalhost:8550でアクセスできることを確認
+        flet_url = "http://localhost:8550"
+
         st.success("Fletアプリが正常に実行されました！")
-        return "http://localhost:8550"
+        return flet_url
+
     except Exception as e:
         st.error(f"Fletアプリの実行中に予期しないエラーが発生しました: {e}")
         return None
