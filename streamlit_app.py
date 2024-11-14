@@ -1,19 +1,32 @@
 import streamlit as st
 import subprocess
 import os
+import time
 
-# ウィンドウのタイトル設定
-st.title("app_main.py 実行")
+# FletのWebアプリを起動
+def start_flet_app():
+    # Fletアプリの実行
+    subprocess.Popen(["python", "app_main.py"])
 
-# ボタンを作成
-if st.button("app_main.pyを実行"):
+    # Fletアプリが起動するまで少し待機
+    time.sleep(5)
+
+    # FletアプリのWebURL（ここではデフォルトのlocalhostで動作する仮定）
+    flet_url = "http://localhost:8550"
+
+    return flet_url
+
+# Streamlitで表示
+st.title("FletのUI表示")
+
+if st.button("Fletアプリを実行"):
     try:
-        # app_main.py のパスを指定（現在のディレクトリにある前提）
-        script_path = os.path.join(os.getcwd(), "app_main.py")
+        # Fletアプリをバックグラウンドで起動
+        flet_url = start_flet_app()
 
-        # app_main.py をバックグラウンドで実行
-        subprocess.Popen(["python", script_path])
-        st.success("app_main.py が実行されました！")
+        st.success(f"Fletアプリが実行されました！以下のURLで表示されています：")
+        st.markdown(f"[Fletアプリへ移動]({flet_url})")
+
     except Exception as e:
-        st.error(f"app_main.py の実行に失敗しました: {e}")
+        st.error(f"Fletアプリの実行に失敗しました: {e}")
 
