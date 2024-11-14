@@ -2,10 +2,24 @@ import streamlit as st
 import subprocess
 import os
 import time
+import importlib.util
+
+# fletライブラリがインストールされているかを確認する関数
+def check_flet_installed():
+    package_name = "flet"
+    package_spec = importlib.util.find_spec(package_name)
+    if package_spec is None:
+        return False
+    return True
 
 # FletアプリのWebアプリを起動
 def start_flet_app():
     try:
+        # fletライブラリがインストールされているかをチェック
+        if not check_flet_installed():
+            st.error("Fletライブラリがインストールされていません。Webサーバーにインストールしてください。")
+            return None
+        
         # ローカルでFletアプリを実行
         process = subprocess.Popen(["python", "app_main.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         
