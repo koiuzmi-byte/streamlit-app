@@ -12,7 +12,7 @@ def start_flet_app():
     time.sleep(5)
 
     # FletアプリのWebURL（ここではデフォルトのlocalhostで動作する仮定）
-    flet_url = "http://localhost:8550"
+    flet_url = "http://localhost:8552"
 
     return flet_url
 
