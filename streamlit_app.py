@@ -4,7 +4,7 @@ import os
 import time
 
 # FletアプリのWebアプリを起動
-ddef start_flet_app():
+def start_flet_app():
     try:
         # Dockerの代わりにローカルでFletアプリを実行
         process = subprocess.Popen(["python", "app_main.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
