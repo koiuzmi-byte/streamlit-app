@@ -45,7 +45,7 @@ def start_flet_app():
 st.title("FletのUI表示")
 
 # Fletアプリを実行するボタン
-if st.button("Fletアプリを実行２"):
+if st.button("Fletアプリを実行４"):
     flet_url = start_flet_app()
 
     if flet_url:
