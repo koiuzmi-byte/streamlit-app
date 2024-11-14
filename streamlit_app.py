@@ -26,7 +26,7 @@ def start_flet_app():
 # Streamlitで表示
 st.title("FletのUI表示")
 
-if st.button("Fletアプリを実行"):
+if st.button("Fletアプリを実行２"):
     flet_url = start_flet_app()
 
     if flet_url:
